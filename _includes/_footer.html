@@ -1,0 +1,16 @@
+---
+---
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted text-center">
+      Copyright &copy; <span id="year"></span> {{ site.name }}
+    </p>
+  </div>
+  <div class="container">
+    <p class="text-muted text-center">
+      <a style="padding-right: 25px;" href="https://www.instagram.com/explore/tags/{{ site.hashtag1 | replace_first: '#','' }}"><span style="color:#bc2a8d;" class="fab fa-instagram"></span> {{ site.hashtag1 }} </a>
+      <a href="https://www.instagram.com/explore/tags/{{ site.hashtag2 | replace_first: '#','' }}"><span style="color:#bc2a8d;" class="fab fa-instagram"></span> {{ site.hashtag2 }} </a>
+    </p>
+  </div>
+</footer>

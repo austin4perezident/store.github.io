@@ -1,0 +1,298 @@
+$blue: #337ab7;
+$black: #555;
+$white: #ffffff;
+$white-transparent: rgba(255,255,255,0.9);
+$grey: #7d7d7d;
+$light-blue: #4da8f2;
+$light-green: #79eddc;
+$facebook: #3B5998;
+$linkedin: #0077B5;
+$github: #4078c0;
+
+$icon-font-path: "assets/fonts/bootstrap/";
+@import 'bootstrap';
+
+html, body {
+  height: 100%;
+}
+
+#wrapper {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+  background: $white;
+  border-top: 1px solid #eee;
+} 
+
+body {
+  background: $white;
+  font-family: 'Roboto', sans-serif;
+}
+
+@font-face {
+  font-family: "Woodlands";
+  src: url("/assets/fonts/TheWoodlands-Regular.ttf");
+}
+
+h1 {
+  color: $black !important;
+  font-size: 100px !important;
+  font-family: "Woodlands";
+}
+
+@media (max-width: 992px) {
+  h1 {
+    font-size: 75px !important;
+  }
+  h2 {
+    &.header-registry {
+      font-size: 60px !important;
+  }
+  &.header-directions {
+    font-size: 60px !important;
+  }
+  }
+}
+
+h2 {
+  &.header-registry {
+    color: $white !important;
+    padding-bottom: 60px;
+    font-size: 80px;
+    font-family: "Woodlands";
+    text-shadow: 2px 0px 2px RGBA(25, 17, 8, 0.80);
+  }
+  &.header-directions {
+    color: $black !important;
+    padding-bottom: 60px;
+    font-size: 80px;
+    font-family: "Woodlands";
+  }
+}
+
+h2 {
+  color: $black;
+}
+
+h3 {
+    color: $black !important;
+    padding-bottom: 15px;
+    font-size: 40px;
+    font-family: "Woodlands";
+}
+
+a {
+  text-decoration: none;
+  color: $blue;
+  &:hover {
+    text-decoration: none;
+    color: $blue;
+  }
+  &:active {
+    text-decoration: none;
+    color: $blue;
+  }
+  &:focus {
+    text-decoration: none;
+    color: $blue;
+  }
+  &.facebook {
+    color: $facebook;
+  }
+  &.linkedin {
+    color: $linkedin;
+  }
+  &.github {
+    color: $github;
+  }
+}
+
+.contact {
+  color: $grey;
+  text-transform: uppercase;
+  font-size: 1.1rem;  
+  margin-top: 30px;
+  padding: 5px;
+}
+
+.wrap {
+  background: $white;
+  color: $black !important;
+  top: 2.5rem;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+.text-blue {
+  color: $light-blue !important;
+  font-weight: 300;
+}
+
+.name {
+  margin-bottom: 0px;
+  text-transform: uppercase;
+}
+
+.tagline {
+  color: $grey;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+}
+
+.summary {
+  padding: 20px 0;
+}
+
+.social {
+  font-size: 1.1rem;  
+  margin-top: 30px;
+  padding: 5px;
+}
+
+.img-profile {
+  max-height: 200px;
+}
+
+.logos {
+  display: inline-block;
+}
+
+.logos a span {
+  transition: .2s;
+  color: #7d7d7d;
+  vertical-align: middle;
+  margin: 0 20px;
+  line-height: 150%;
+  &.icon-filmhub:hover {
+    color: #2e007f;
+  }
+  &.icon-kpinsonstairs:hover {
+    color: #44c03f;
+  }
+  &.icon-nfx:hover {
+    color: #121327;
+  }
+}
+
+.jumbotron {
+  margin-bottom: 0 !important;
+}
+
+.jumbotron-main {
+  background-image: url("/assets/images/ah_1.jpg");
+  color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  max-height: 80vh;
+}
+
+@media (max-width: 992px) {
+  .jumbotron-main {
+    background-image: url("/assets/images/ah_1_mobile.jpg");
+  }
+}
+
+.jumbotron-registry {
+  background-image: url("/assets/images/ah_2.jpg");
+  color: white;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  min-height: 300px;
+}
+
+.marginBottom {
+  margin-bottom: 25px;
+}
+
+.form-horizontal .control-label{
+    text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.popover-title {
+  font-family: 'Roboto', sans-serif;
+  color: $black;
+  font-size: 15px;
+}
+
+.popover-content {
+  color: $black;
+}
+
+.popover {
+  min-width: 250px;
+}
+
+#rsvpContainer {
+  padding-bottom: 60px;
+}
+
+.registry-box {
+  height: 300px;
+  width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: .1s;
+  padding: 50px;
+}
+
+.registry-box:hover {
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.4);
+  transition: .1s;
+}
+
+/* Google Maps*/
+#mapCeremony {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+}
+
+#mapReception {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+}
+
+a.svg {
+  position: relative;
+  display: inline-block; 
+}
+a.svg:after {
+  content: ""; 
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
+}

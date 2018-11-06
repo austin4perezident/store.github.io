@@ -1,0 +1,72 @@
+
+<div class="container" style="padding-top:60px; padding-bottom: 60px;">
+<div id="rsvpContainer" class="container" hidden>
+
+    <div style="padding-top: 25px; text-align: center;">
+        <span style="font-size: 24px; color: #555;">
+            <span>Time remaining to RSVP</span>
+            <br>
+            <small id="timer"></small>
+        </span>
+    </div>
+  
+    <div style="padding-bottom: 40px;" class="row">
+      <div class="col-md-8 col-md-offset-2 wrap" style="text-align: left;">
+                <h2 class="marginBottom" style="text-align: center;margin-top: 0;">RSVP</h2>
+        <div>
+          <form class="form-horizontal" id="rsvpForm">
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="name" placeholder="Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" name="email" placeholder="Email">
+              </div>
+            </div>
+            <div>
+            <div class="form-group">
+              <label for="rsvpType" class="control-label col-sm-2">RSVP Type</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="rsvpType">
+                  <option selected disabled hidden>Please select</option>
+                  <option>Ceremony Only</option>
+                  <option>Reception Only</option>
+                  <option>Ceremony and Reception</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="guests" class="control-label col-sm-2">Number of Guests</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" name="guests" placeholder="Number of Guests">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message" class="control-label col-sm-2">Message</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" rows="3" name="message" placeholder="Message to the bride and groom"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit"  value="Send" class="btn btn-default">Submit</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="rsvpSuccess" style="padding-top: 25px; text-align: center;" hidden>
+        <span style="font-size: 24px; color: #555; font-weight: 200;">
+            <span>Your RSVP has been submitted! <br><span style="font-size:20px;">We are beyond excited to see you! <span>&#x1F604;</span></span></span>
+        </span>
+    </div>
+</div> 

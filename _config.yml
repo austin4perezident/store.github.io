@@ -1,0 +1,33 @@
+name: tiny barn
+title: tiny barn
+description: Welcome to tiny barn
+keywords: tiny, barn, tiny house, tiny home
+email: austin@austinp.com
+url: "https://tinybarn.co"
+hashtag1: "#tinybarn"
+hashtag2: "#hayaustin"
+# Build settings
+sass:
+  style: compressed
+  sourcemap: inline
+  # debug_info: true
+  line_numbers: true
+  line_comments: true
+#plugins:
+#  - jekyll-feed
+
+compress_html:
+  clippings: all
+  comments: [""]
+  endings: [html, head, body, li, dt, dd, rt, rp, optgroup, option, colgroup, caption, thead, tbody, tfoot, tr, td, th]
+  profile: false
+  blanklines: false
+  ignore:
+    envs: []
+
+exclude: ["_assets",
+          "Gemfile",
+          "Gemfile.lock",
+          "gulpfile.js",
+          "node_modules",
+          "package.json"]
