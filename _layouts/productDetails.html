@@ -1,0 +1,44 @@
+---
+layout: index
+---
+<div class="product-details">
+  {% assign productImage = page.genericimages | split: "," %}
+  <img src="{{ productImage.first }}" alt="{{ page.name }}" class="img-responsive" />
+  <div class="product-description">
+    <p>{{ page.name }}</p>
+
+    <div>
+      {{ page.description }}
+    </div>
+    <div>
+      {{ page.shipping }}
+    </div>
+    <div>
+      {{ page.option1 }}
+      {% assign optionitems = page.option1items | split: "," %}
+      {% for item in optionitems %}
+        <div>{{ item }}</div>
+      {% endfor %}
+    </div>
+    <div>
+      {{ page.specifications }}
+    </div>
+    <div>
+      {% assign images = page.optionimages | split: "," %}
+
+      {% for image in images %}
+        <img src="{{ image }}" style="width: 50px; max-height: 50px;">
+      {% endfor %}
+
+    </div>
+
+    <!-- <button class="snipcart-add-item"
+      data-item-name="{{ page.name }}"
+      data-item-id="{{ page.sku }}"
+      data-item-image="{{ page.image }}"
+      data-item-url="{{ site.baseurl }}"
+      data-item-price="{{ page.price }}">
+      Buy it for {{ page.price }} $
+    </button> -->
+  </div>
+</div>

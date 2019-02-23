@@ -1,0 +1,51 @@
+name: Name
+title: Name
+description: Welcome to Name
+keywords: name
+email: john@doe.com
+url: "https://name.com"
+svg_logo_url: "/safari-pinned-tab.svg"
+
+# Social Media
+
+instagram: "name"
+facebook: "name"
+
+# Build settings
+sass:
+  style: compressed
+  sourcemap: inline
+  # debug_info: true
+  line_numbers: true
+  line_comments: true
+plugins:
+  - jekyll-include-cache
+  - jekyll-sitemap
+  # To use: run 'bundle exec jekyll pagemaster [collection-name]'
+  - pagemaster
+markdown: kramdown
+collections:
+  products:
+    output: true
+    # pagemaster variables
+    source: products.json
+    id_key: id
+    layout: product
+
+
+compress_html:
+  clippings: all
+  comments: [""]
+  endings: [html, head, body, li, dt, dd, rt, rp, optgroup, option, colgroup, caption, thead, tbody, tfoot, tr, td, th]
+  profile: false
+  blanklines: false
+  ignore:
+    envs: []
+
+exclude: ["_data,
+          _assets",
+          "Gemfile",
+          "Gemfile.lock",
+          "gulpfile.js",
+          "node_modules",
+          "package.json"]

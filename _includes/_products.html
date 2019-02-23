@@ -1,0 +1,21 @@
+
+{% cycle '<div id="products" class="row row-padding" style="padding-bottom: 30px;">', '', '' %}
+	<div class="col-xs-4 p-container">
+		<div class="product" style="position: relative;">
+			<div style="position: relative;">
+				<a href="{{ product.url }}">
+					{% assign productImage = product.genericimages | split: "," %}
+					<img class="product-image img-responsive" src="{{ productImage.first }}" alt="{{ product.name }}">
+					<div style="position: absolute; top:0; left:0;height:100%;width:100%;background-color: rgba(0, 0, 0, 0.3);">
+						<div style="position: relative;height: 100%;">
+							<div style="position: absolute;top:50%;left:50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);text-align: center;">
+								<div style="color: white; font-weight: 600;font-size: 16px;padding-bottom: 10px;">{{ product.name }}</div>
+								<div style="color: white; font-weight: 600;font-size: 16px;">{{ product.price }}</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+{% cycle '', '', '</div>' %}

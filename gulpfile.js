@@ -33,7 +33,9 @@ gulp.task('build:styles:critical', function() {
         loadPath: [paths.sassFiles]
     }).pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
         .pipe(cleancss())
-        .pipe(gulp.dest('_includes'))
+        .pipe(gulp.dest(paths.jekyllCssFiles))
+        .pipe(gulp.dest(paths.siteCssFiles))
+        .pipe(browserSync.stream())
         .on('error', gutil.log);
 });
 
@@ -53,13 +55,12 @@ gulp.task('build:styles:main', function() {
 });
 
 // Builds all styles.
-gulp.task('build:styles', ['build:styles:main', 'build:styles:critical']);
+gulp.task('build:styles', ['build:styles:critical', 'build:styles:main']);
 
 // Deletes CSS.
 gulp.task('clean:styles', function(callback) {
     del([paths.jekyllCssFiles + 'app.css',
-        paths.siteCssFiles + 'app.css',
-        '_includes/critical.css'
+        paths.siteCssFiles + 'app.css'
     ]);
     callback();
 });
@@ -163,7 +164,7 @@ gulp.task('clean', ['clean:jekyll',
 gulp.task('build', function(callback) {
   // Run all build tasks.
   runSequence('clean',
-        ['build:scripts', 'build:styles', 'build:fonts', 'build:images'],
+        'build:scripts', 'build:styles', 'build:fonts', 'build:images',
         'build:jekyll',
         callback);
 });
