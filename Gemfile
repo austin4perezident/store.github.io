@@ -20,6 +20,15 @@ gem "minima", "~> 2.0"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
    gem "jekyll-feed", "~> 0.6"
+
+   # A Jekyll plugin to cache the rendering of Liquid includes
+   gem 'jekyll-include-cache'
+
+	# Jekyll plugin to silently generate a sitemaps.org compliant sitemap for your Jekyll site
+	gem 'jekyll-sitemap'
+
+	# jekyll plugin for generating markdown collection pages from .csv, .json, or .yml records
+	gem 'pagemaster'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
