@@ -29,6 +29,15 @@ group :jekyll_plugins do
 
 	# jekyll plugin for generating markdown collection pages from .csv, .json, or .yml records
 	gem 'pagemaster'
+
+	# Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser. Among Nokogiri's many features is the ability to search documents via XPath or CSS3 selectors.
+	gem 'nokogiri'
+
+	# Makes http fun again! Ain't no party like a httparty, because a httparty don't stop.
+	gem 'httparty'
+
+	# A runtime developer console and IRB alternative with powerful introspection capabilities.
+	gem 'pry', '~> 0.12.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
