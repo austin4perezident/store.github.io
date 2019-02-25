@@ -1,2 +1,2 @@
-# tinybarn.github.io
-tiny barn website
+# store.github.io
+Generic Store Website
