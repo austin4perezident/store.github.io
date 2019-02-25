@@ -12,6 +12,7 @@ instagram: "name"
 facebook: "name"
 
 # Build settings
+permalink: pretty
 sass:
   style: compressed
   sourcemap: inline
@@ -31,6 +32,7 @@ collections:
     source: products.json
     id_key: id
     layout: product
+    permalink: /:collection/:title
 
 
 compress_html:
