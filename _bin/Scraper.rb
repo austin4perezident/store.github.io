@@ -24,7 +24,8 @@ class Scraper
   end
 
   # def get_description
-
+  #   binding.pry
+  #   parse_page.css(".description-content").children.map { |name| name.text }.compact
   # end
 
   # def get_shipping
@@ -43,9 +44,9 @@ class Scraper
 
   # end
 
-  # def get_specifications
-
-  # end
+  def get_specifications
+    parse_page.css(".product-property-list").children.map { |name|name.text }.compact
+  end
 
   # def get_tags
 
@@ -68,6 +69,8 @@ class Scraper
     scraper = Scraper.new(u)
     productName = scraper.get_name
     productPrice = scraper.get_price
+    # productDescription = scraper.get_description
+    productSpecifications = scraper.get_specifications
 
     puts "--------------"
     puts "Name:"
@@ -75,6 +78,9 @@ class Scraper
     puts "--------------"
     puts "Price:"
     puts "#{productPrice}"
+    puts "--------------"
+    puts "Specifications:"
+    puts "#{productSpecifications}"
     puts "--------------"
 
   end
