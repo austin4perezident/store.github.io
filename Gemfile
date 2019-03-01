@@ -40,6 +40,13 @@ gem 'httparty'
 # A runtime developer console and IRB alternative with powerful introspection capabilities.
 gem 'pry', '~> 0.12.2'
 
+# Ruby on Rails
+gem 'rails'
+
+# Watir and webdrivers for retrieving data that is javascript rendered
+gem 'watir'
+gem 'webdrivers'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
