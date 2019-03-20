@@ -2,7 +2,7 @@
 layout: index
 ---
 <div class="product-details">
-  {% assign productImage = page.genericimages | split: "," %}
+  {% assign productImage = page.images | split: "," %}
   <img src="{{ productImage.first }}" alt="{{ page.name }}" class="img-responsive" />
   <div class="product-description">
     <p>{{ page.name }}</p>
@@ -14,17 +14,39 @@ layout: index
       {{ page.shipping }}
     </div>
     <div>
-      {{ page.option1 }}
-      {% assign optionitems = page.option1items | split: "," %}
-      {% for item in optionitems %}
-        <div>{{ item }}</div>
+      {% assign options = page.options | split: "," %}
+      {% for items in options %}
+
+        {% assign item = items | split: "|" %}
+
+        {% for i in item %}
+
+          {% assign mod = forloop.index | modulo: 2 %}
+          {% if mod == 0 %}
+            <!-- Option Children -->
+            {% if i contains ';' %}
+              {% assign children = i | split: ";" %}
+
+              {% for child in children %}
+                <div style="color: red"> {{ child }}</div>
+              {% endfor %}
+            {% else %}
+              <div style="color: red"> {{ i }}</div>
+            {% endif %}
+          {% else %}
+            <!-- Option Header -->
+            <h1>{{ i }}</h1>
+          {% endif %}
+        
+        {% endfor %}
+
       {% endfor %}
     </div>
     <div>
       {{ page.specifications }}
     </div>
     <div>
-      {% assign images = page.optionimages | split: "," %}
+      {% assign images = page.images | split: "," %}
 
       {% for image in images %}
         <img src="{{ image }}" style="width: 50px; max-height: 50px;">

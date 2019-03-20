@@ -18,16 +18,21 @@ class Scraper
 	end
 
   def download_image(url, file_name)
+
+    image_directory = "/_assets/images/"
+
     open(url) do |u|
-      File.open(File.join(File.expand_path("..", Dir.pwd), "/_assets/images", file_name), 'wb') { |f| f.write(u.read) }
+      File.open(File.join(File.expand_path("..", Dir.pwd), image_directory, file_name), 'wb') { |f| f.write(u.read) }
     end
+
+    return image_directory.tr('_', '') + file_name
   end
 
-  def new_file_name(file, index)
+  def new_file_name(file, sku, index)
     file, extension = file.split('.')
     index = sprintf '%02d', index
 
-    return file + '-' + index.to_s + '.' + extension
+    return sku + '_' + index.to_s + '.' + extension
   end
 
   def get_pro_res_file(url)
@@ -67,9 +72,21 @@ class Scraper
     return js_rendered_content
   end
 
-  def get_options
+  def get_options(sku)
+
+    #
+    # => Understanding get_options Delimeter:
+    # =>    Each option will be separated by ','
+    # =>    The title of the option will be separated by '|'
+    # =>    The list values of the option will be separated by ';'
+    #
+    # => Example:
+    # =>    title1|option1;option2;option3,
+    # =>    title2|option1;option2;option3
+    #
+
     option_list = parse_page.css("#j-product-info-sku").children
-    list ||= []
+    list = {}
 
     option_list.each do |item|
       next if !item.text.gsub(/\s+/, '').present?
@@ -84,16 +101,52 @@ class Scraper
           image = child.css("img").first.try { |p| p["src"] }
           image_file_name = image.split('/').last.split('_').first
 
-          children_list << { title: title, image: image }
+          saved_image = download_image(get_pro_res_file(image), new_file_name(image_file_name, sku, index))
 
-          download_image(get_pro_res_file(image), new_file_name(image_file_name, index))
+          children_list << { title: title, image: saved_image }
         else
           children_list << { title: child.children.try { |p| p.first.text } }
         end
       end
-      list << { option_name => children_list } 
+      list[option_name] = children_list 
     end
     return list
+  end
+
+  def get_option_types(list)
+    optionKeyNames = list.keys
+    options ||= []
+
+    optionKeyNames.each do |key|
+      optionTypeNames = list[key].map {|x| x.keys }.uniq[0]
+      if optionTypeNames.include?(:title)
+        children = list[key].map {|item| item[:title] }.join(";")
+        options << children.prepend(key + "|")
+      end
+    end
+    if options.empty?
+      return ""
+    else
+      return options.join(',')
+    end
+  end
+
+  def get_images(list)
+    optionKeyNames = list.keys
+    images ||= []
+
+    optionKeyNames.each do |key|
+      optionTypeNames = list[key].map {|x| x.keys }.uniq[0]
+      if optionTypeNames.include?(:image)
+        images << list[key].map {|item| item[:image] }.join(",")
+      end
+    end
+
+    if images.empty?
+      return ""
+    else
+      return images.join(',')
+    end
   end
 
   def get_specifications
@@ -106,6 +159,29 @@ class Scraper
     end
 
     list.map {|s| s.gsub(":", "=")}.join('|')
+  end
+
+  def writeFile(sku, name, price, specs, options, images, shipping)
+    name = name.split(' ').join('-')
+
+    file = File.new(File.join(File.expand_path("..", Dir.pwd), "/_products", name + ".html"), 'wb')
+
+    file.puts("---")
+
+    file.puts("layout: productDetails")
+    file.puts("sku: " + sku.to_s)
+    file.puts("name: " + name.to_s)
+    file.puts("description: ")
+    file.puts("price: " + price.to_s)
+    file.puts("specifications: " + specs.to_s)
+    file.puts("options: " + options.to_s)
+    file.puts("images: " + images.to_s)
+    file.puts("shipping: " + shipping.to_s)
+
+    file.puts("---")
+
+    file.close
+
   end
 
   # def get_tags
@@ -123,29 +199,22 @@ class Scraper
   urls = looper.get_urls
   urls.each do |u|
     scraper = Scraper.new(u)
+    productSku = SecureRandom.hex(10)
+    optionsList = scraper.get_options(productSku)
+
+
     productName = scraper.get_name
     productPrice = scraper.get_price
     # productDescription = scraper.get_description(u)
     productSpecifications = scraper.get_specifications
-    productOptions = scraper.get_options
+    productOptions = scraper.get_option_types(optionsList)
+    productImages = scraper.get_images(optionsList)
     productShipping = scraper.get_shipping(u)
 
-    puts "--------------"
-    puts "Name:"
-    puts "#{productName}"
-    puts "--------------"
-    puts "Price:"
-    puts "#{productPrice}"
-    puts "--------------"
-    puts "Shipping:"
-    puts "#{productShipping}"
-    puts "--------------"
-    puts "Specifications:"
-    puts "#{productSpecifications}"
-    puts "--------------"
-    puts "Options:"
-    puts "#{productOptions}"
-    puts "--------------"
+
+    scraper.writeFile(productSku, productName, productPrice, productSpecifications, productOptions, productImages, productShipping)
+
+    puts "DONE!"
 
   end
 end
